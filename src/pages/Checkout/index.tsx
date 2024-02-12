@@ -42,7 +42,13 @@ const Checkout = () => {
     initialValues: {
       // Aqui inserimos os ids referentes aos inputs e inserimos seus valores iniciais (geralmente strings vazias). Além disso também é necessário adicionar o atributo "name" aos ids. O valor deste atributo deve ser o mesmo do id.
       fullName: '',
-      email: '',
+      // email: '',
+      city: '',
+      address: '',
+      addressNumber: '',
+      complement: '',
+      neighborhood: '',
+      zipCode: '',
       cpf: '',
       deliveryEmail: '',
       confirmDeliveryEmail: '',
@@ -59,9 +65,24 @@ const Checkout = () => {
       fullName: Yup.string()
         .min(5, 'O nome precisa ter pelo menos 5 caracteres')
         .required('O campo é obrigatório'),
-      email: Yup.string()
-        .email('E-mail inválido')
-        .required('O campo é obrigatório'),
+      // email: Yup.string()
+      //   .email('E-mail inválido')
+      //   .required('O campo é obrigatório'),
+      city: Yup.string()
+        .min(3, 'O noem da cidade precisa ter pelo menos 3 caracteres')
+        .required(),
+      address: Yup.string()
+        .min(5, 'O endereço precisa ter pelo menos 5 caracteres')
+        .required(),
+      addressNumber: Yup.string().required(),
+      complement: Yup.string().required(),
+      neighborhood: Yup.string()
+        .min(2, 'O nome do bairro precisa ter pelo menos 2 caracteres')
+        .required(),
+      zipCode: Yup.string()
+        .min(8, 'O campo precisa ter 8 caracteres')
+        .max(9, 'O campo precisa ter 8 caracteres')
+        .required(),
       cpf: Yup.string()
         .min(14, 'O campo precisa ter 14 caracteres')
         .max(15, 'O campo precisa ter 14 caracteres')
@@ -102,7 +123,14 @@ const Checkout = () => {
       purchase({
         billing: {
           document: values.cpf,
-          email: values.email,
+          // email: values.email,
+          city: values.city,
+          address: values.address,
+          addressNumber: values.addressNumber,
+          complement: values.complement,
+          neighborhood: values.neighborhood,
+          zipCode: values.zipCode,
+
           name: values.fullName
         },
         delivery: {
@@ -226,7 +254,7 @@ const Checkout = () => {
                     className={checkInputHasError('fullName') ? 'error' : ''}
                   />
                 </S.InputGroup>
-                <S.InputGroup>
+                {/* <S.InputGroup>
                   <label htmlFor="email">E-mail</label>
                   <input
                     type="email"
@@ -237,7 +265,7 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('email') ? 'error' : ''}
                   />
-                </S.InputGroup>
+                </S.InputGroup> */}
                 <S.InputGroup>
                   <label htmlFor="cpf">CPF</label>
                   <InputMask
@@ -249,6 +277,84 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cpf') ? 'error' : ''}
                     mask="999.999.999-99"
+                  />
+                </S.InputGroup>
+                <S.InputGroup>
+                  <label htmlFor="city">Cidade</label>
+                  <input
+                    type="string"
+                    id="city"
+                    name="city"
+                    value={form.values.city}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('city') ? 'error' : ''}
+                  />
+                </S.InputGroup>
+              </S.Row>
+              <S.Row marginTop="24px">
+                <S.InputGroup>
+                  <label htmlFor="address">Rua</label>
+                  <input
+                    type="string"
+                    id="address"
+                    name="address"
+                    value={form.values.address}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('address') ? 'error' : ''}
+                  />
+                </S.InputGroup>
+                <S.InputGroup>
+                  <label htmlFor="addressNumber">Número</label>
+                  <input
+                    type="string"
+                    id="addressNumber"
+                    name="addressNumber"
+                    value={form.values.addressNumber}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={
+                      checkInputHasError('addressNumber') ? 'error' : ''
+                    }
+                  />
+                </S.InputGroup>
+                <S.InputGroup>
+                  <label htmlFor="complement">Complemento</label>
+                  <input
+                    type="string"
+                    id="complement"
+                    name="complement"
+                    value={form.values.complement}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('complement') ? 'error' : ''}
+                  />
+                </S.InputGroup>
+                <S.InputGroup>
+                  <label htmlFor="neighborhood">Bairro</label>
+                  <input
+                    type="string"
+                    id="neighborhood"
+                    name="neighborhood"
+                    value={form.values.neighborhood}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={
+                      checkInputHasError('neighborhood') ? 'error' : ''
+                    }
+                  />
+                </S.InputGroup>
+                <S.InputGroup>
+                  <label htmlFor="zipCode">CEP</label>
+                  <input
+                    type="string"
+                    id="zipCode"
+                    name="zipCode"
+                    value={form.values.zipCode}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('zipCode') ? 'error' : ''}
                   />
                 </S.InputGroup>
               </S.Row>
@@ -358,6 +464,8 @@ const Checkout = () => {
                           }
                         />
                       </S.InputGroup>
+                    </S.Row>
+                    <S.Row marginTop="24px">
                       <S.InputGroup>
                         <label htmlFor="cardNumber">Número do cartão</label>
                         <InputMask
@@ -418,8 +526,6 @@ const Checkout = () => {
                           mask="999"
                         />
                       </S.InputGroup>
-                    </S.Row>
-                    <S.Row marginTop="24px">
                       <S.InputGroup maxWidth="150px">
                         <label htmlFor="installments">Parcelamento</label>
                         <select

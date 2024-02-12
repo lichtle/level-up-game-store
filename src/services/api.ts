@@ -9,7 +9,13 @@ type PurchasePayload = {
   products: Product[]
   billing: {
     name: string
-    email: string
+    // email: string
+    city: string
+    address: string
+    addressNumber: string
+    complement: string
+    neighborhood: string
+    zipCode: string
     document: string
   }
   delivery: {

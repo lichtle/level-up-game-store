@@ -4,7 +4,7 @@ import { parseToBrl } from '../../utils'
 import * as S from './styles'
 
 import Loader from '../Loader'
-import Button from '../Button'
+// import Button from '../Button'
 import Tag from '../Tag'
 
 const Banner = () => {
