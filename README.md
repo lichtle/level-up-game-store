@@ -4,7 +4,7 @@ Loja de games fictícia desenvolvida durante o curso Engenheiro Front-End da EBA
 
 [Link do projeto](https://level-up-game-store.vercel.app/)
 
-<img src="https://i.ibb.co/DWcwr15/lvl-up.png" alt="Imagem do projeto" width="600"/>
+<img src="https://i.ibb.co/DWcwr15/lvl-up.png" alt="Imagem do projeto" width="800"/>
 
 ### Tecnologias Utilizadas:
 - HTML
