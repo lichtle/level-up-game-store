@@ -36,7 +36,10 @@ const Footer = () => (
           </li>
         </S.Links>
       </S.FooterSection>
-      <p>{currentYear} - &copy; E-PLAY Todos os direitos reservados</p>
+      <p>
+        {currentYear} - &copy; Level Up Game Store - Todos os direitos
+        reservados
+      </p>
     </div>
   </S.Container>
 )
